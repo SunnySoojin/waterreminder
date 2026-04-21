@@ -1,34 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 body {
-  @apply bg-blue-50 text-slate-800 font-sans antialiased;
+  @apply bg-[#05060a] text-[#c0c5cc] font-mono antialiased overflow-hidden;
+  background-image: 
+    linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-.sea-sky-gradient {
-  background: linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 50%, #38bdf8 100%);
-  background-attachment: fixed;
+.holographic-glow {
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5), 0 0 20px rgba(0, 242, 255, 0.3);
 }
 
-.glass-morphism {
-  @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-[0_20px_50px_rgba(8,112,184,0.07)];
+.neon-border {
+  @apply border border-[#00f2ff]/30 shadow-[0_0_15px_rgba(0,242,255,0.1)];
+  background: rgba(10, 15, 25, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
 }
 
-.hover-lift {
-  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10 active:scale-[0.98];
+.neon-border:hover {
+  @apply border-[#00f2ff]/60 shadow-[0_0_25px_rgba(0,242,255,0.2)];
 }
 
-@keyframes wave {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0); }
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 51%,
+    transparent 51%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
 }
 
-.animate-wave {
-  animation: wave 3s ease-in-out infinite;
+.terrain-grid {
+  position: fixed;
+  bottom: -20%;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, rgba(0, 242, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px;
+  transform: perspective(500px) rotateX(60deg);
+  mask-image: linear-gradient(to bottom, transparent, black);
+  z-index: -1;
+  animation: scroll-terrain 20s linear infinite;
+}
+
+@keyframes scroll-terrain {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1000px; }
+}
+
+.hologram-pulse {
+  animation: hologram-flicker 4s linear infinite;
+}
+
+@keyframes hologram-flicker {
+  0% { opacity: 0.98; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.98; }
+  15% { opacity: 0.92; }
+  20% { opacity: 0.98; }
+  100% { opacity: 0.98; }
+}
+
+/* Custom Scrollbar for the holo vibe */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 242, 255, 0.2);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 255, 0.4);
 }
 
